@@ -9,7 +9,8 @@ public class Card
 
     public string Title { get; private set; }
     public string Description { get; private set; }
-    public List<Effect> Effects { get; private set; }
+    public Effect ManualTargetEffect { get; private set; }
+    public List<AutoTargetEffect> OtherEffects { get; private set; }
     public Sprite Image { get; private set; }
     public int Mana { get; private set; }
 
@@ -24,6 +25,7 @@ public class Card
         Title = data.Title;
         Description = data.Description;
         Mana = data.Mana;
-        Effects = data.Effects;
+        ManualTargetEffect = data.ManualTargetEffect;
+        OtherEffects = data.OtherEffects;
     }
 }

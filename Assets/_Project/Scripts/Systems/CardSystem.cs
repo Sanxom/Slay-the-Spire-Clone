@@ -70,7 +70,6 @@ public class CardSystem : Singleton<CardSystem>
     {
         foreach (Card card in hand)
         {
-            discardPile.Add(card);
             CardView cardView = handView.RemoveCard(card);
             yield return DiscardCard(cardView);
         }
@@ -86,9 +85,10 @@ public class CardSystem : Singleton<CardSystem>
 
         SpendMana(playCardGA);
         
-        foreach (Effect effect in playCardGA.Card.Effects)
+        foreach (AutoTargetEffect effectWrapper in playCardGA.Card.OtherEffects)
         {
-            PerformEffectGA performEffectGA = new(effect);
+            List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
+            PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets);
             ActionSystem.Instance.AddReaction(performEffectGA);
         }
     }
@@ -111,9 +111,7 @@ public class CardSystem : Singleton<CardSystem>
     #region Helpers
     private IEnumerator DiscardCard(CardView cardView)
     {
-        // NOTICE: ADDED BY MASON
         discardPile.Add(cardView.Card);
-        //
         cardView.transform.DOScale(Vector3.zero, doTweenScaleDuration);
         Tween tween = cardView.transform.DOMove(discardPilePoint.position, doTweenMoveDuration);
         yield return tween.WaitForCompletion();

@@ -16,12 +16,22 @@ MonoBehaviour:
   <Title>k__BackingField: Arrow Rain
   <Description>k__BackingField: Deal 10 damage to all enemies.
   <Mana>k__BackingField: 1
-  <Effects>k__BackingField:
-  - rid: 3569982942541250646
+  <ManualTargetEffect>k__BackingField:
+    rid: -2
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 3569982942541250671
+    <Effect>k__BackingField:
+      rid: 3569982942541250672
   references:
     version: 2
     RefIds:
-    - rid: 3569982942541250646
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 3569982942541250671
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 3569982942541250672
       type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
       data:
         damageAmount: 10
