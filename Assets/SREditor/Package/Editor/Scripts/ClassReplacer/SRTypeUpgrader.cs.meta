@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6f6de2ddcd9c4424985bd83152cd6b46
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297559
+  packageName: Serialize Reference Editor
+  packageVersion: 1.3.10
+  assetPath: Assets/SREditor/Package/Editor/Scripts/ClassReplacer/SRTypeUpgrader.cs
+  uploadId: 741134

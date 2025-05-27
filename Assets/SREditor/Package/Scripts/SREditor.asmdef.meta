@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 79ad2193969254fbd829729521e3eee3
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297559
+  packageName: Serialize Reference Editor
+  packageVersion: 1.3.10
+  assetPath: Assets/SREditor/Package/Scripts/SREditor.asmdef
+  uploadId: 741134

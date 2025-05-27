@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 33465bdc19ac11f4e880cc8782f08e48
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297559
+  packageName: Serialize Reference Editor
+  packageVersion: 1.3.10
+  assetPath: Assets/SREditor/Package/Editor/Scripts/Settings/SRDuplicateMode.cs
+  uploadId: 741134

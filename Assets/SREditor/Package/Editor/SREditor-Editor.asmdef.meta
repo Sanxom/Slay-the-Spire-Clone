@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 8f30366ec9b14f4a8f51a8165d42a035
+timeCreated: 1674739006
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297559
+  packageName: Serialize Reference Editor
+  packageVersion: 1.3.10
+  assetPath: Assets/SREditor/Package/Editor/SREditor-Editor.asmdef
+  uploadId: 741134

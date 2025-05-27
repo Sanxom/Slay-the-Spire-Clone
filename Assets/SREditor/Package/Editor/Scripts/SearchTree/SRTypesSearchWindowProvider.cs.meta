@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 43597fd4ae314bd7b613f327da32463c
+timeCreated: 1707848188
+AssetOrigin:
+  serializedVersion: 1
+  productId: 297559
+  packageName: Serialize Reference Editor
+  packageVersion: 1.3.10
+  assetPath: Assets/SREditor/Package/Editor/Scripts/SearchTree/SRTypesSearchWindowProvider.cs
+  uploadId: 741134
