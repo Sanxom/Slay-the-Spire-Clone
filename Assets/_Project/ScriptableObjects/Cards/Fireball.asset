@@ -16,7 +16,13 @@ MonoBehaviour:
   <Title>k__BackingField: Fireball
   <Description>k__BackingField: Deal 4 damage to an enemy.
   <Mana>k__BackingField: 2
-  <Effects>k__BackingField: []
+  <ManualTargetEffect>k__BackingField:
+    rid: 4153351382836445287
+  <OtherEffects>k__BackingField: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4153351382836445287
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 4

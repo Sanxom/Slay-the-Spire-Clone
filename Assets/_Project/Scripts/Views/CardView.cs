@@ -54,33 +54,53 @@ public class CardView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         if (!Interactions.Instance.PlayerCanInteract()) return;
 
-        Interactions.Instance.PlayerIsDragging = true;
-        wrapper.SetActive(true);
-        CardViewHoverSystem.Instance.Hide();
-        dragStartPosition = transform.position;
-        dragStartRotation = transform.rotation;
-        transform.SetPositionAndRotation(MouseUtils.GetMousePositionInWorldSpace(mousePositionZValue), Quaternion.Euler(0, 0, 0));
+        if (Card.ManualTargetEffect != null)
+        {
+            ManualTargetingSystem.Instance.StartTargeting(MouseUtils.GetMousePositionInWorldSpace(mousePositionZValue));
+        }
+        else
+        {
+            Interactions.Instance.PlayerIsDragging = true;
+            wrapper.SetActive(true);
+            CardViewHoverSystem.Instance.Hide();
+            dragStartPosition = transform.position;
+            dragStartRotation = transform.rotation;
+            transform.SetPositionAndRotation(MouseUtils.GetMousePositionInWorldSpace(mousePositionZValue), Quaternion.Euler(0, 0, 0));
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (!Interactions.Instance.PlayerCanInteract()) return;
 
-        PlayCardOrResetPosition();
+        if (Card.ManualTargetEffect != null)
+        {
+            EnemyView target = ManualTargetingSystem.Instance.EndTargeting(MouseUtils.GetMousePositionInWorldSpace(mousePositionZValue));
+            if (target != null && ManaSystem.Instance.HasEnoughMana(Card.Mana))
+            {
+                PlayCardGA playCardGA = new(Card, target);
+                ActionSystem.Instance.Perform(playCardGA);
+            }
+        }
+        else
+        {
+            PlayCardOrResetPosition();
 
-        Interactions.Instance.PlayerIsDragging = false;
+            Interactions.Instance.PlayerIsDragging = false;
+        }
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (!Interactions.Instance.PlayerCanInteract()) return;
+        if (Card.ManualTargetEffect != null) return;
 
         transform.position = MouseUtils.GetMousePositionInWorldSpace(mousePositionZValue);
     }
 
     private bool CanPlayCard()
     {
-        return ManaSystem.Instance.HasEnoughMana(Card.Mana) && Physics.Raycast(transform.position, Vector3.forward, out RaycastHit hit, mouseUpRaycastDistance, dropAreaLayer);
+        return ManaSystem.Instance.HasEnoughMana(Card.Mana) && Physics.Raycast(transform.position, Vector3.forward, out _, mouseUpRaycastDistance, dropAreaLayer);
     }
 
     private void PlayCardOrResetPosition()

@@ -84,13 +84,8 @@ public class CardSystem : Singleton<CardSystem>
         yield return DiscardCard(cardView);
 
         SpendMana(playCardGA);
-        
-        foreach (AutoTargetEffect effectWrapper in playCardGA.Card.OtherEffects)
-        {
-            List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
-            PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets);
-            ActionSystem.Instance.AddReaction(performEffectGA);
-        }
+        DoManualTargetEffect(playCardGA);
+        DoAutoTargetEffect(playCardGA);
     }
     #endregion
 
@@ -136,6 +131,25 @@ public class CardSystem : Singleton<CardSystem>
     {
         SpendManaGA spendManaGA = new(playCardGA.Card.Mana);
         ActionSystem.Instance.AddReaction(spendManaGA);
+    }
+
+    private void DoManualTargetEffect(PlayCardGA playCardGA)
+    {
+        if (playCardGA.Card.ManualTargetEffect != null)
+        {
+            PerformEffectGA performEffectGA = new(playCardGA.Card.ManualTargetEffect, new() { playCardGA.ManualTarget });
+            ActionSystem.Instance.AddReaction(performEffectGA);
+        }
+    }
+
+    private void DoAutoTargetEffect(PlayCardGA playCardGA)
+    {
+        foreach (AutoTargetEffect effectWrapper in playCardGA.Card.OtherEffects)
+        {
+            List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
+            PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets);
+            ActionSystem.Instance.AddReaction(performEffectGA);
+        }
     }
     #endregion
 }
